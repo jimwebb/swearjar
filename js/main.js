@@ -1,5 +1,10 @@
 jQuery(document).ready(function($){
 
+  // if nothing happens immediately, display the intro text
+  window.setTimeout ( update_intro, 500 );
+
+
+  // Check for speech recognition capability
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition || window.oSpeechRecognition;
 
   if (!SpeechRecognition) {
@@ -7,9 +12,7 @@ jQuery(document).ready(function($){
     return null;
   }
 
-
-  window.swears = {};
-  window.swears['total'] = 0;
+  // ----------- CONFIGURATION ------------
 
   // configure dollar values
   var minor = 5;
@@ -20,23 +23,32 @@ jQuery(document).ready(function($){
   var kaching = 'audio/cash_register_2.wav';
   // https://github.com/TalAter/annyang
 
+  // commands are parsed in order and the system stops at the first one matched
+  var phrases = {
+
+    'Grab them by the pussy' : hang_your_head,
+    'President Trump' : major,
+    'Muslim Ban' : major,
+    'Sean Spicer' : major,
+    'Make America Great Again' : major,
+    'Steve Bannon' : major,
+    'Betsy DeVos' : major,
+    'Donald Trump' : minor,
+    'Mike Pence' : minor,
+    'Kellyanne Conway' : minor,
+    'Ivanka Trump' : minor,
+    'Trump' : minor,
+    'Elizabeth Warren' : -major,
+    'Equality' : -minor,
+    'Rule of Law' : -minor
+
+  }
+
+  window.swears = {};
+  window.swears['total'] = 0;
+  window.swears['count'] = 0;
+
   if (annyang) {
-
-    // commands are parsed in order and the system stops at the first one matched
-    window.phrases = {
-
-      'Grab them by the pussy' : hang_your_head,
-      'President Trump' : major,
-      'Muslim Ban' : major,
-      'Steve Bannon' : major,
-      'Betsy DeVos' : major,
-      'Donald Trump' : minor,
-      'Trump' : minor,
-
-      'Equality' : -minor,
-      'Rule of Law' : -minor
-
-    }
 
     // load commands
     for (var property in phrases) {
@@ -45,20 +57,14 @@ jQuery(document).ready(function($){
       }
     }
 
-
     // debug
     annyang.addCallback('result', function(userSaid, commandText, phrases) {
       console.log(userSaid); // sample output: 'hello'
-      console.log(commandText); // sample output: 'hello (there)'
-      console.log(phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
     });
-
 
     annyang.addCallback('start', function() {
       update_intro('listening');
     });
-
-    window.setTimeout ( update_intro, 500 );
 
     // Start listening.
     annyang.start();
@@ -99,10 +105,17 @@ function add_phrase (phrase, amount) {
 
 function add_to_jar(phrase, amount) {
   window.swears.total += amount;
+  window.swears.count++;
+
 
   // no negative numbers please
   if ( window.swears.total < 0 ) {
     window.swears.total = 0
+  }
+
+  // show donate buttons if we have something to donate
+  if ( window.swears.count > 2 || window.swears.total > 10 ) {
+    $('#donate-buttons').removeClass('hidden');
   }
 
   // play ka-ching sound
@@ -130,8 +143,6 @@ function add_to_jar(phrase, amount) {
   });
 
   $('#swears').append($message);
-
-  // that is all
 }
 
 
@@ -159,10 +170,20 @@ function update_intro(state) {
   }
 }
 
+// set up donation buttons; they're weird
+$('a.button.donate').on('click', function(e) {
+  var $this = $(this);
 
+  var qs_append = $this.data('append');
+  var qs_amt = $this.data('amount');
 
+  if (qs_amt) {
+    e.preventDefault();
+  }
 
-
+  var url = $this.prop('href') + qs_append + qs_amt + "=" + window.swears.total;
+  location.href = url;
+});
 
 
 

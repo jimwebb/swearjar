@@ -48,7 +48,7 @@ body, html {
 
 #center-wrapper {
     position: absolute;
-    top: 60%;
+    top: 55%;
     -webkit-transform: translateY(-60%);
     -moz-transform: translateY(-60%);
     -ms-transform: translateY(-60%);
@@ -74,18 +74,21 @@ body, html {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  height: 75vh;
+  height: 70vh;
   position: relative;
 }
 
-#swears-total {
+#swear-jar-text {
   display: inline-block;
-  padding: 10px 20px 5px;
-  background-color: rgba(255,255,255,0.9);
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 20%;
+  bottom: 30%;
+}
+
+#swears-total {
+  padding: 10px 20px 5px;
+  background-color: rgba(255,255,255,0.9);
   line-height: 1;
   font-family: "League Gothic", Helvetica;
   font-style: normal;
@@ -93,15 +96,35 @@ body, html {
   text-align: center;
 }
 
-#swears {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  font-family: "League Gothic", Helvetica;
+#donate-buttons {
   text-align: center;
+  margin-top: 10px;
+  transition: opacity 1s;
+}
+
+#donate-buttons.hidden {
+  opacity: 0;
+}
+
+.button {
+  display: inline-block;
+  background-color: #376092;
+  border: 1px solid #7db9e8;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 15px 20px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
   text-transform: uppercase;
-  font-size: 8rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.button small {
+  display: block;
+  font-size: 0.8em;
+  font-weight: normal;
+  text-transform: none;
 }
 
 .amount {
@@ -113,9 +136,18 @@ body, html {
   color: #376092;
 }
 
-#no-speech-recognition {
-  display: none;
+#swears {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6vh;
+  width: 100%;
+  font-family: "League Gothic", Helvetica;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 8rem;
 }
+
 
 #messages > div {
   display: none;
@@ -260,13 +292,6 @@ textarea {
    Helper classes
    ========================================================================== */
 
-/*
- * Hide visually and from screen readers
- */
-
-.hidden {
-    display: none !important;
-}
 
 /*
  * Hide only visually, but have it available for screen readers:
