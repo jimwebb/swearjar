@@ -1,5 +1,13 @@
 jQuery(document).ready(function($){
 
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition || window.oSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    update_intro('fail');
+    return null;
+  }
+
+
   window.swears = {};
   window.swears['total'] = 0;
 
@@ -16,10 +24,18 @@ jQuery(document).ready(function($){
 
     // commands are parsed in order and the system stops at the first one matched
     window.phrases = {
+
       'Grab them by the pussy' : hang_your_head,
       'President Trump' : major,
+      'Muslim Ban' : major,
       'Steve Bannon' : major,
-      'Trump' : minor
+      'Betsy DeVos' : major,
+      'Donald Trump' : minor,
+      'Trump' : minor,
+
+      'Equality' : -minor,
+      'Rule of Law' : -minor
+
     }
 
     // load commands
@@ -37,9 +53,39 @@ jQuery(document).ready(function($){
       console.log(phrases); // sample output: ['hello', 'halo', 'yellow', 'polo', 'hello kitty']
     });
 
+
+    annyang.addCallback('start', function() {
+      update_intro('listening');
+    });
+
+    window.setTimeout ( update_intro, 500 );
+
     // Start listening.
     annyang.start();
   }
+
+// initialize counter
+if ( CountUp ) {
+
+  var easingFn = function (t, b, c, d) {
+    var ts = (t /= d) * t;
+    var tc = ts * t;
+    return b + c * (tc * ts + -5 * ts * ts + 10 * tc + -10 * ts + 5 * t);
+  }
+
+  var options = {
+    useEasing : true,
+    easingFn : easingFn,
+    useGrouping : true,
+    separator : ',',
+    decimal : '.',
+    prefix : '$',
+    suffix : ''
+  };
+
+  window.swears['counter'] = new CountUp("swears-total", 0, 0, 2, 2, options);
+  window.swears.counter.start();
+}
 
 
 function add_phrase (phrase, amount) {
@@ -50,26 +96,76 @@ function add_phrase (phrase, amount) {
   annyang.addCommands (command);
 }
 
+
 function add_to_jar(phrase, amount) {
-  console.log('adding', phrase, amount);
   window.swears.total += amount;
-  update_jar(phrase, amount);
-}
 
+  // no negative numbers please
+  if ( window.swears.total < 0 ) {
+    window.swears.total = 0
+  }
 
-function update_jar(phrase, amount) {
-
-  // play ka-ching!
-
+  // play ka-ching sound
   var register = new Audio(kaching);
   register.play();
 
-  // update the total
-  $('#swears-total').html(window.swears.total);
+  // update the total and animate it
+  if (window.swears.counter) {
+    window.swears.counter.update(window.swears.total);
+  } else {
+    $('#swears-total').html(window.swears.total);
+  }
 
-  // show the latest swear
-  $('#messages').append('<div class="message"><span class="phrase">' + phrase + '</span><span class=:"amount">+$' + amount + '</span></div>');
+  // show the latest swear and deduction/credits
+  if ( amount > 0 ) {
+    var amount_text = '<span class="amount">$' + amount + '</span>';
+  } else {
+    var amount_text = '<span class="amount credit">-$' + amount + '</span>';
+  }
+
+  var $message = $('<div class="swear"><span class="phrase">' + phrase + '</span>' + amount_text + '</div>');
+
+  $message.on('webkitAnimationEnd', function() {
+    $(this).remove();
+  });
+
+  $('#swears').append($message);
+
+  // that is all
 }
+
+
+function update_intro(state) {
+
+  // if this is the initial call, and there's no other element visible, show the intro
+  if (typeof state == "undefined") {
+    if ( !$('#messages >div:visible').length ) {
+        $('#message-initial').fadeIn();
+    }
+    return;
+  }
+
+
+  $('#messages >div:visible').fadeOut();
+
+  switch (state) {
+
+    case 'fail':
+      $('#message-fail').fadeIn();
+      break;
+    case 'listening':
+      $('#message-listening').fadeIn();
+      break;
+  }
+}
+
+
+
+
+
+
+
+
 
 
 }); // end jQuery
