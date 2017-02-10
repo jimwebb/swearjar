@@ -9,6 +9,7 @@ jQuery(document).ready(function($){
   var serious = 20;
   var hang_your_head = 125;
 
+  var kaching = 'audio/cash_register_2.wav';
   // https://github.com/TalAter/annyang
 
   if (annyang) {
@@ -52,12 +53,22 @@ function add_phrase (phrase, amount) {
 function add_to_jar(phrase, amount) {
   console.log('adding', phrase, amount);
   window.swears.total += amount;
-  update_jar();
+  update_jar(phrase, amount);
 }
 
 
-function update_jar() {
+function update_jar(phrase, amount) {
+
+  // play ka-ching!
+
+  var register = new Audio(kaching);
+  register.play();
+
+  // update the total
   $('#swears-total').html(window.swears.total);
+
+  // show the latest swear
+  $('#messages').append('<div class="message"><span class="phrase">' + phrase + '</span><span class=:"amount">+$' + amount + '</span></div>');
 }
 
 

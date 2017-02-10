@@ -16,6 +16,66 @@ html {
     line-height: 1.4;
 }
 
+body, html {
+  height: 100%;
+}
+
+.outer-wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.center-wrapper {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-60%);
+    -moz-transform: translateY(-60%);
+    -ms-transform: translateY(-60%);
+    -o-transform: translateY(-60%);
+    transform: translateY(-60%);
+    width: 100%;
+}
+
+.swear-jar {
+
+}
+/* ==========================================================================
+   Fading animation
+   ========================================================================== */
+
+   @keyframes fadeIn {
+     from {
+       opacity: 0;
+       transform: translate3d(0, 100%, 0);
+     }
+
+     50% {
+       opacity: 1;
+       transform: none;
+     }
+
+     to {
+       opacity: 0;
+       transform: translate3d(0, -100%, 0);
+     }
+   }
+
+   .message {
+     animation-name: fadeIn;
+     animation-duration: 1s;
+     animation-fill-mode: both;
+   }
+
+
+
+
+
+
+
+
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301

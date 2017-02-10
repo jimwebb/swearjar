@@ -7,8 +7,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico in the root directory -->
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -18,18 +16,31 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div id="swears-total">0</div>
+        <div id="outer-wrapper">
+          <div id="center-wrapper">
+
+            <div id="swearjar">
+              <div id="swears-total">$0.00</div>
+            </div>
+
+            <div id="messages"></div>
+
+          </div>
+        </div>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
 
+        <!-- vendor scripts -->
         <script src="js/vendor/annyang.min.js"></script>
+        <script src="js/vendor/countUp.js"></script>
+
+        <!-- our scripts -->
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!-- Google Analytics -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
