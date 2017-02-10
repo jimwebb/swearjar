@@ -1,0 +1,36 @@
+// donation info
+
+ACLU
+
+Southern Poverty Law Center https://www.paypal.com/fundraiser/charity/30238
+
+EFF https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=accounting@eff.org&lc=US&amount=50&currency_code=USD
+
+Council on American Islamic Relations https://www.cair.com/donations/general-donation/campaign/#/donatenow?amt=55&mg=0&oa=0
+
+
+
+// sample form
+
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_donations">
+<input type="hidden" name="business" value="YU9ECY7CJU6SL">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="amount" value="50.00">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="cn" value="Add special instructions to the seller:">
+<input type="hidden" name="no_shipping" value="2">
+<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHosted">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=YU9ECY7CJU6SL&lc=US&amount=50&currency_code=USD
+
+
+
+https://www.paypal.com/fundraiser/charity/30238
+
+<form action="/fundraiser/charity/30238/xo/create" method="post"><input type="hidden" name="_csrf" value="0IF5Sqe3ugAN1BkQ62tbOxCGq2xjQdi93tlzU="><input type="hidden" name="npid" value="30238"><input type="hidden" name="eventUrl" value="eventUrl"><input type="hidden" name="amount" value=""><div class="vx_form-group_hiddenLabel" style="margin-bottom: 10px;"></div><div class="hub_checkbox"><input type="checkbox" id="anonymous-checkbox" name="anonymous" value="on"><label class="vx_small-text" for="anonymous-checkbox">Make this an anonymous donation</label></div><input type="submit" class="btn btn-small btn-primary btn_prim" id="nemo_donatebuttonNPO" value="Donate Now" style="width: 60%; margin: 10px 0px 15px;"></form>
