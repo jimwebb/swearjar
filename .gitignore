@@ -16,3 +16,9 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+
+# quick certificate for MAMP
+temp-cert
+
+# any node that creeps in
+node_modules
