@@ -28,20 +28,32 @@ jQuery(document).ready(function($){
 
     'Grab them by the pussy' : hang_your_head,
     'President Trump' : major,
-    'Muslim Ban' : major,
+    'Muslim Ban' : serious,
     'Sean Spicer' : major,
-    'Make America Great Again' : major,
+    'Make America Great Again' : serious,
     'Steve Bannon' : major,
     'Betsy DeVos' : major,
     'Donald Trump' : minor,
+    'Michael Flynn' : minor,
     'Mike Pence' : minor,
     'Kellyanne Conway' : minor,
+    'Kelly Ann Conway' : minor,
     'Ivanka Trump' : minor,
-    'Trump' : minor,
+    'Jeff Sessions' : minor, 
+    'See You In Court' : minor,
+    'Bad Dude' : minor,
+    'Bad Hombre' : minor,
+    'Nasty Woman' : major,
+    'Bigly' : minor,
+    'Fake News' : minor,
+
     'Elizabeth Warren' : -major,
     'Equality' : -minor,
-    'Rule of Law' : -minor
+    'Rule of Law' : -minor,
+    'Rule of Law' : -minor,
+    'Fuck Trump' : -minor,
 
+    'Trump' : minor
   }
 
   window.swears = {};
