@@ -71,6 +71,10 @@ body, html {
 
 }
 
+#messages h3 {
+  margin-bottom: 0;
+}
+
 #messages p {
   margin-top: 0;
 }
@@ -106,6 +110,10 @@ body, html {
   text-align: center;
   margin-top: 10px;
   transition: opacity 1s;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  padding-left: 215px;
 }
 
 #donate-buttons.hidden {
@@ -114,8 +122,8 @@ body, html {
 
 .button {
   display: inline-block;
-  background-color: #376092;
-  border: 1px solid #7db9e8;
+  background-color: #5cb85c;
+  border: 1px solid #4cae4c;
   border-radius: 5px;
   text-decoration: none;
   padding: 15px 20px;
@@ -123,7 +131,6 @@ body, html {
   color: white;
   font-weight: bold;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
 }
 
 .button small {
@@ -157,6 +164,40 @@ body, html {
 
 #messages > div {
   display: none;
+}
+
+#swear-help {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+}
+
+#swear-list {
+  transition: opacity 1s;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+#swear-list li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+#swear-list li:after {
+  content: ", "
+}
+
+#swear-list li:last-of-type:after,
+#swear-list li.value-0:after {
+  content: " ";
+}
+
+#swear-list .used span {
+  text-decoration: line-through;
 }
 
 /* ==========================================================================
@@ -298,6 +339,9 @@ textarea {
    Helper classes
    ========================================================================== */
 
+.hidden {
+  display: none;
+}
 
 /*
  * Hide only visually, but have it available for screen readers:
@@ -336,7 +380,7 @@ textarea {
  */
 
 .invisible {
-    visibility: hidden;
+    opacity: 0;
 }
 
 /*

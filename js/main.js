@@ -26,12 +26,8 @@ jQuery(document).ready(function($){
   // commands are parsed in order and the system stops at the first one matched
   var phrases = {
 
-    'Grab them by the pussy' : horrendous,
-
-    'Make America Great Again' : serious,
-    'Muslim Ban' : serious,
-
     'President Trump' : major,
+    'Donald Trump' : minor,
     'Fake News' : major,
     'Michael Flynn' : major,
     'Jeff Sessions' : major,
@@ -42,18 +38,23 @@ jQuery(document).ready(function($){
 
     'Mike Pence' : minor,
     'Kellyanne Conway' : minor,
-    'Kelly Ann Conway' : minor,
     'Ivanka Trump' : minor,
     'See You In Court' : minor,
-    'Bad Dude' : minor,
     'Bad Hombre' : minor,
     'Bigly' : minor,
-    'Donald Trump' : minor,
+    'Trump' : minor,
+
+    'Grab Them by the Pussy' : horrendous,
+
+    'Make America Great Again' : serious,
+    'Muslim Ban' : serious,
+
+    'Anti-Swears:' : 0,
 
     'Equality' : -minor,
     'Rule of Law' : -minor,
+    'Caring About Others' : -minor,
 
-    'Trump' : minor
   }
 
   window.swears = {};
@@ -64,10 +65,17 @@ jQuery(document).ready(function($){
 
     // load commands
     for (var property in phrases) {
+
+      // instantiate command
       if (phrases.hasOwnProperty(property)) {
         add_phrase(property, phrases[property]);
       }
+
+      // populate list of swears
+      $('#swear-list').append('<li id="swear-list-' + property.toLowerCase().replace(/\s/g , "-") + '" + class="value-' + phrases[property] + '"><span>' + property.replace(/ussy/, "****") + "</span></li>");
     }
+
+
 
     // debug
     annyang.addCallback('result', function(userSaid, commandText, phrases) {
@@ -128,7 +136,7 @@ jQuery(document).ready(function($){
 
     // show donate buttons if we have something to donate
     if ( window.swears.count > 2 || window.swears.total > 10 ) {
-      $('#donate-buttons').removeClass('hidden');
+      $('#donate-buttons').removeClass('invisible');
     }
 
     // play ka-ching sound
@@ -146,7 +154,7 @@ jQuery(document).ready(function($){
     if ( amount > 0 ) {
       var amount_text = '<span class="amount">$' + amount + '</span>';
     } else {
-      var amount_text = '<span class="amount credit">-$' + amount + '</span>';
+      var amount_text = '<span class="amount credit">-$' + -amount + '</span>';
     }
 
     var $message = $('<div class="swear"><span class="phrase">' + phrase + '</span>' + amount_text + '</div>');
@@ -154,6 +162,9 @@ jQuery(document).ready(function($){
     $message.on('webkitAnimationEnd', function() {
       $(this).remove(); // the whole thing only works on chrome anyway, so we're good
     });
+
+    // cross it off the list
+    $('#swear-list-' + phrase.toLowerCase().replace(/\s/g , "-") ).addClass("used");
 
     $('#swears').append($message);
   }
@@ -211,6 +222,16 @@ jQuery(document).ready(function($){
     location.href = url;
 
   });
+
+  $('#swear-list-control').on('click', function() {
+    $('#swear-list-control').hide();
+    $('#swear-list').show();
+  });
+
+
+
+
+
 
 
 
