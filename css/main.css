@@ -60,6 +60,8 @@ body, html {
 #messages {
   text-align: center;
   padding: 20px 20px;
+  position: relative;
+  z-index: 100;
 
   background: #bae8ff; /* Old browsers */
   background: -moz-linear-gradient(top,  #bae8ff 0%, #43ceff 100%); /* FF3.6-15 */
@@ -67,6 +69,10 @@ body, html {
   background: linear-gradient(to bottom,  #bae8ff 0%,#43ceff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bae8ff', endColorstr='#43ceff',GradientType=0 ); /* IE6-9 */
 
+}
+
+#messages p {
+  margin-top: 0;
 }
 
 #swear-jar {
