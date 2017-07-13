@@ -35,6 +35,9 @@ jQuery(document).ready(function($){
     'Sean Spicer' : major,
     'Steve Bannon' : major,
     'Betsy DeVos' : major,
+    'Russia' : major,
+    'collusion' : major,
+    'Putin' : major,
 
     'Mike Pence' : minor,
     'Kellyanne Conway' : minor,
@@ -48,6 +51,7 @@ jQuery(document).ready(function($){
 
     'Make America Great Again' : serious,
     'Muslim Ban' : serious,
+    'Her Emails' : serious,
 
     'Anti-Swears:' : 0,
 
